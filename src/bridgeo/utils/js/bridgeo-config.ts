@@ -69,7 +69,7 @@ export const generatedBridgeoConfig: BridgeoConfigGenerated = Object.freeze({
     ping: (() => {
         const ping = bridgeoConfig.ping;
         if (ping === true) return Infinity;
-        return ping || 0;
+        return ping || 1;
     })(),
     public: bridgeoConfig.public || '127.0.0.1'
 });
