@@ -1,0 +1,49 @@
+diff --git a/node_modules/bedrock-protocol/index.js b/node_modules/bedrock-protocol/index.js
+index 7018ae3..1b38537 100644
+--- a/node_modules/bedrock-protocol/index.js
++++ b/node_modules/bedrock-protocol/index.js
+@@ -6,7 +6,7 @@ if (typeof process !== 'undefined' && parseInt(process.versions.node.split('.')[
+ 
+ const { Client } = require('./src/client')
+ const { Server } = require('./src/server')
+-const { Relay } = require('./src/relay')
++const { Relay, RelayPlayer } = require('./src/relay')
+ const { createClient, ping } = require('./src/createClient')
+ const { createServer } = require('./src/createServer')
+ const { Titles } = require('prismarine-auth')
+@@ -16,6 +16,7 @@ module.exports = {
+   Client,
+   Server,
+   Relay,
++  RelayPlayer,
+   createClient,
+   ping,
+   createServer,
+diff --git a/node_modules/bedrock-protocol/src/relay.js b/node_modules/bedrock-protocol/src/relay.js
+index 3128a7d..8d64559 100644
+--- a/node_modules/bedrock-protocol/src/relay.js
++++ b/node_modules/bedrock-protocol/src/relay.js
+@@ -60,6 +60,17 @@ class RelayPlayer extends Player {
+     const params = des.data.params
+     this.upInLog('->', name, params)
+ 
++    // TODO fix definitions
++    if (
++        name === 'crafting_data'
++        || name === 'spawn_particle_effect'
++        || name === 'update_block_synced'
++        || name === 'camera_instruction'
++    ) {
++      this.sendBuffer(packet)
++      return
++    }
++
+     if (name === 'play_status' && params.status === 'login_success') return // Already sent this, this needs to be sent ASAP or client will disconnect
+ 
+     if (debugging) { // some packet encode/decode testing stuff
+@@ -289,4 +300,4 @@ class Relay extends Server {
+ }
+ 
+ // Too many things called 'Proxy' ;)
+-module.exports = { Relay }
++module.exports = { Relay, RelayPlayer }

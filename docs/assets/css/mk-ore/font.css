@@ -1,0 +1,52 @@
+@font-face {
+    font-family: "Mojangles";
+    src: url("../../font/mojangles.ttf");
+}
+@font-face {
+    font-family: "Unifont";
+    src: url("../../font/unifont-15.1.05.otf");
+}
+@font-face {
+    font-family: "Minecraft Ten";
+    src: url("../../font/minecraft-ten.ttf");
+}
+@font-face {
+    font-family: "Minecraft Five";
+    src: url("../../font/minecraft-five.otf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Minecraft Five";
+    src: url("../../font/minecraft-five-bold.otf");
+    font-weight: bold;
+}
+
+[data-md-color-scheme="mk-ore"] * {
+    --md-text-font-family: Mojangles, Unifont, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif !important;
+    --md-code-font-family: Mojangles, Unifont, SFMono-Regular, Consolas, Menlo, monospace !important;
+    font-family: var(--md-text-font-family), system-ui !important;
+}
+[data-md-color-scheme="mk-ore"] h1,
+[data-md-color-scheme="mk-ore"] h1 * {
+    font-family: "Minecraft Ten", Unifont, sans-serif !important;
+}
+[data-md-color-scheme="mk-ore"] h2,
+[data-md-color-scheme="mk-ore"] h2 *,
+[data-md-color-scheme="mk-ore"] h3,
+[data-md-color-scheme="mk-ore"] h3 *,
+[data-md-color-scheme="mk-ore"] h4,
+[data-md-color-scheme="mk-ore"] h4 *,
+[data-md-color-scheme="mk-ore"] h5,
+[data-md-color-scheme="mk-ore"] h5 *,
+[data-md-color-scheme="mk-ore"] h6,
+[data-md-color-scheme="mk-ore"] h6 * {
+    font-family: "Minecraft Five", Unifont, sans-serif !important;
+}
+[data-md-color-scheme="mk-ore"] code,
+[data-md-color-scheme="mk-ore"] code *,
+[data-md-color-scheme="mk-ore"] kbd,
+[data-md-color-scheme="mk-ore"] kbd *,
+[data-md-color-scheme="mk-ore"] pre,
+[data-md-color-scheme="mk-ore"] pre * {
+    font-family: var(--md-code-font-family), monospace !important;
+}

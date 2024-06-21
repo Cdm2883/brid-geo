@@ -1,0 +1,103 @@
+#file: noinspection YAMLSchemaValidation
+site_name: BridGeo
+site_url: https://bridgeo.cdms.vip/
+site_author: Cdm2883
+
+repo_name: Cdm2883/brid-geo
+repo_url: https://github.com/Cdm2883/brid-geo
+
+copyright: Copyright &copy; 2024 - 2024 Cdm2883
+
+nav:
+  - 首页: index.md
+  - 用户指南:
+    - 快速开始: usage/quick-start.md
+  - 插件开发:
+    - 前端插件开发:
+      - 快速开始: develop/quick-start.md
+    - 后端插件开发:
+      - 快速开始: develop/quick-start.md
+    - WebSocket:
+      - 快速开始: develop/quick-start.md
+  - 开源贡献:
+    - 快速开始: develop/quick-start.md
+
+theme:
+  name: material
+  language: zh
+  favicon: assets/img/logo.png
+  logo: assets/img/logo.png
+  palette:
+    - scheme: mk-ore
+      primary: green
+      accent: green
+      toggle:
+        icon: material/brightness-7
+        name: Switch to OreUI
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: material/brightness-4
+        name: Switch to Material2
+  font:
+    text: Roboto
+    code: Source Code Pro
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - md_in_html
+  - def_list
+  - attr_list
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - toc:
+      permalink: true
+      permalink_title: 获取此部分的链接
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - assets/css/mk-ore/main.css
+
+extra:
+  social:
+    - icon: material/email
+      link: mailto:hi@cdms.vip

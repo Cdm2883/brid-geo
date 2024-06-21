@@ -1,20 +1,61 @@
 {
   "name": "brid-geo",
   "version": "0.1.0",
+  "description": "Minecraft Bedrock Edition server proxy and rendering tool with MITM development framework.",
+  "keywords": [
+    "minecraft", "minecraft-bedrock", "minecraft-bedrock-edition",
+    "proxy", "relay", "mitm",
+    "render",
+    "minechat", "bridgeo"
+  ],
+  "homepage": "https://github.com/Cdm2883/brid-geo",
+  "bugs": "https://github.com/Cdm2883/brid-geo/issues",
+  "license": "GNU Lesser General Public License v3.0 only",
+  "author": "Cdm2883 <hi@cdms.vip> (https://cdms.vip/)",
+  "repository": "github:Cdm2883/brid-geo",
   "private": true,
+
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "postinstall": "patch-package",
+    "dev": "tsx server.ts",
+    "debug": "set DEBUG=minecraft-protocol && tsx server.js",
+    "start": "set NODE_ENV=production && tsx server.ts",
+    "clear": "tsx scripts/clear.ts"
   },
   "dependencies": {
+
+    "bedrock-protocol": "3.37.0",
+    "bedrock-provider": "^3.0.0",
+    "minecraft-data": "^3.66.0",
+    "minecraft-protocol": "^1.47.0",
+
+    "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.0"
+    "three": "^0.164.1",
+
+    "chalk": "^5.3.0",
+    "deasync": "^0.1.30",
+    "lodash": "^4.17.21",
+    "sharp": "^0.33.4",
+    "ws": "^8.17.0"
+
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.1.0"
+    "@types/deasync": "^0.1.5",
+    "@types/lodash": "^4.17.4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/ws": "^8.5.10",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.3",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "patch-package": "^8.0.0",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
   }
 }
