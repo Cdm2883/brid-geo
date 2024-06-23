@@ -39,6 +39,7 @@
 [data-md-color-scheme="mk-ore"] .md-search input {
     border-radius: 0;
     border: none;
+    padding-top: 3px;
     color: #ffffff !important;
     background-color: #313233 !important;
     box-shadow: inset 0 3px #242425;
@@ -102,7 +103,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    --zoom: 1.65;
+    --zoom: 1.655;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYAgMAAACdGdVrAAAADFBMVEUeHh8TDQv/pEBEOjB4PgItAAAANElEQVQI12NgQAH8oUDwAUaxRi2NWhoAp1aFhq5CUECxKAQVumpVKC4KVSWqKSg2oNqOAgAtty59F/NKiAAAAABJRU5ErkJggg==);
     width: calc(24px * var(--zoom));
     height: calc(24px * var(--zoom));
@@ -135,8 +136,15 @@
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
 }
-
 @media screen and (max-width: 60em) {
+    [data-md-color-scheme="mk-ore"] .md-header__inner > .md-search > div > form > label svg {
+        visibility: visible;
+    }
+    [data-md-color-scheme="mk-ore"] .md-header__inner > .md-search > div > form > label {
+        background: none;
+        top: .54rem;
+    }
+
     [data-md-color-scheme="mk-ore"] .md-header__inner > form > label:nth-child(2)::after {
         top: 6px;
         left: 6px;
@@ -150,5 +158,11 @@
         filter: brightness(0);
     }
 }
-
-/*[data-md-color-scheme="mk-ore"] .md-header__inner > label:nth-child(6),*/
+@media screen and (min-width: 100em) {
+    [data-md-color-scheme="mk-ore"] .md-header__inner > form > label:nth-child(2)::after {
+        --zoom: 1.81;
+    }
+    [data-md-color-scheme="mk-ore"] .md-header__inner > .md-search > div > form > label {
+        --zoom: .94;
+    }
+}
