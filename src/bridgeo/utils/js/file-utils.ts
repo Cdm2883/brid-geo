@@ -21,11 +21,20 @@ export function createDirIfNotExists(path: fs.PathLike) {
     fs.mkdirSync(path, { recursive: true });
     return true;
 }
-export function createFileParentDirIfNotExists(path: string) {
+export function createParentDirIfNotExists(path: string) {
     return createDirIfNotExists(paths.resolve(path, '..'));
 }
 
 export function simpleWriteFile(file: string, data: string | NodeJS.ArrayBufferView) {
-    createFileParentDirIfNotExists(file);
+    createParentDirIfNotExists(file);
     fs.writeFileSync(file, data, { encoding: 'utf-8' });
+}
+
+export function deletePathForce(path: string) {
+    if (!fs.existsSync(path)) return;
+    if (fs.lstatSync(path).isFile()) return fs.unlinkSync(path);
+    fs.readdirSync(path)
+        .map(name => paths.resolve(path, name))
+        .forEach(deletePathForce);
+    fs.rmdirSync(path);
 }
