@@ -14,26 +14,26 @@ export default function createJsonBinding<T extends object>(path: string, defaul
     read();
 
     const handler: ProxyHandler<T> = {
-        get(target, key, receiver) {
+        get(...args) {
             if (dynamic) read();
-            const value = Reflect.get(target, key, receiver);
+            const value = Reflect.get(...args);
             if (value === null) return value;
             return typeof value === 'object' ? new Proxy(value as object, handler) : value;
         },
-        set(target, key, value) {
-            const result = Reflect.set(target, key, value);
+        set(...args) {
+            const value = Reflect.set(...args);
             write();
-            return result;
+            return value;
         },
-        defineProperty(target: T, property: string | symbol, attributes: PropertyDescriptor) {
-            const result = Reflect.defineProperty(target, property, attributes);
+        defineProperty(...args) {
+            const value = Reflect.defineProperty(...args);
             write();
-            return result;
+            return value;
         },
-        deleteProperty(target: T, p: string | symbol) {
-            const result = Reflect.deleteProperty(target, p);
+        deleteProperty(...args) {
+            const value = Reflect.deleteProperty(...args);
             write();
-            return result;
+            return value;
         }
     };
     return new Proxy(json, handler);

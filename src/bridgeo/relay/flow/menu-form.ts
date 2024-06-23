@@ -16,6 +16,7 @@ import form, {
     DialogFormRequest
 } from "@/bridgeo/relay/packets/form";
 import { RelayContext } from "@/bridgeo/relay/starter";
+import { binding } from "@/bridgeo/utils/js/functions";
 import { ArrayIndexes } from "@/bridgeo/utils/js/type-utils";
 import globalId from "@/bridgeo/utils/mc/global-id";
 
@@ -31,11 +32,11 @@ abstract class MenuForm<R> {
     constructor(arg0: RequireQueue | RelayContext | Player, arg1: RequireOnce | undefined = undefined) {
         if ((arg0 as RelayContext).relay) {
             const context = arg0 as RelayContext;
-            this.#queue = context.client.queue.bind(context.client);
+            this.#queue = binding(context.client).queue;
             this.#once = listener => context.packets.once('client.modal_form_response', listener);
         } else if ((arg0 as Player).version) {
             const player = arg0 as Player;
-            this.#queue = player.queue.bind(player);
+            this.#queue = binding(player).queue;
             this.#once = listener => player.once('modal_form_response', listener);
         } else {
             this.#queue = arg0 as RequireQueue;
@@ -246,17 +247,17 @@ export class MenuCustomForm extends MenuForm<CustomFormResponse> {
         // noinspection TypeScriptValidateTypes
         block({
             // @ts-expect-error
-            label: this.addLabel.bind(this),
+            label: binding(this).addLabel,
             // @ts-expect-error
-            input: this.addInput.bind(this),
+            input: binding(this).addInput,
             // @ts-expect-error
-            toggle: this.addToggle.bind(this),
+            toggle: binding(this).addToggle,
             // @ts-expect-error
-            dropdown: this.addDropdown.bind(this),
+            dropdown: binding(this).addDropdown,
             // @ts-expect-error
-            slider: this.addSlider.bind(this),
+            slider: binding(this).addSlider,
             // @ts-expect-error
-            stepSlider: this.addStepSlider.bind(this),
+            stepSlider: binding(this).addStepSlider,
             response: () => Promise.reject()
         }).then().catch(_.noop);
         /* eslint-enable @typescript-eslint/ban-ts-comment */

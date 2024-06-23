@@ -86,3 +86,13 @@ export function mixinsClassInstance<T>(clazz: T, objects: any[], exclude: (strin
     }
     return clazz;
 }
+
+export function binding<T extends object | null | undefined>(receiver: T): T {
+    if (receiver === null || receiver === undefined) return receiver;
+    return new Proxy(receiver, {
+        get(...args) {
+            const value = Reflect.get(...args);
+            return typeof value === 'function' ? value.bind(receiver) : value;
+        }
+    });
+}

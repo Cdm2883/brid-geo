@@ -2,6 +2,7 @@ import PluginRegister from "@/bridgeo/plugin/register/plugin-register";
 import { PacketOptionsStub, PacketsReceiver, PacketStub } from "@/bridgeo/relay/packet-bus";
 import CommonRelay from "@/bridgeo/relay/relay";
 import { RelayContext, RelayCreatingMaterial, relays } from "@/bridgeo/relay/starter";
+import { binding } from "@/bridgeo/utils/js/functions";
 
 export interface IPluginRegisterRelay extends PacketsReceiver {
     onRelayCreating?(material: RelayCreatingMaterial): void;
@@ -13,10 +14,10 @@ export interface IPluginRegisterRelay extends PacketsReceiver {
 }
 export class PluginRegisterRelay extends PluginRegister<IPluginRegisterRelay> {
     register(handler: IPluginRegisterRelay) {
-        const onRelayCreating = handler.onRelayCreating?.bind(handler);
+        const onRelayCreating = binding(handler).onRelayCreating;
         if (onRelayCreating) this.plugin.lifecycle.on('relay.creating', onRelayCreating);
 
-        const onRelayCreated = handler.onRelayCreated?.bind(handler);
+        const onRelayCreated = binding(handler).onRelayCreated;
         if (onRelayCreated) {
             relays.forEach(relay => onRelayCreated(relay, {
                 class: relay.constructor as typeof CommonRelay,
@@ -40,13 +41,15 @@ export class PluginRegisterRelay extends PluginRegister<IPluginRegisterRelay> {
 
             const onUpstream = handler.onUpstream?.bind(context);
             if (onUpstream) {
-                context.client.on('upstream', onUpstream);
-                this.plugin.lifecycle.on('self.unload', () => context.client.off('upstream', onUpstream));
+                const args = [ 'upstream', onUpstream ] as const;
+                context.client.on(...args);
+                this.plugin.lifecycle.on('self.unload', () => context.client.off(...args));
             }
             const onDownstream = handler.onDownstream?.bind(context);
             if (onDownstream) {
-                context.client.on('downstream', onDownstream);
-                this.plugin.lifecycle.on('self.unload', () => context.client.off('downstream', onDownstream));
+                const args = [ 'downstream', onDownstream ] as const;
+                context.client.on(...args);
+                this.plugin.lifecycle.on('self.unload', () => context.client.off(...args));
             }
         };
         relays.flatMap(relay => Object.values(relay.clients))

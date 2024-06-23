@@ -4,6 +4,7 @@ import chalk from "chalk";
 
 import { reloadPlugins, unloadPlugins } from "@/bridgeo/plugin/loader";
 import { relays } from "@/bridgeo/relay/starter";
+import { binding } from "@/bridgeo/utils/js/functions";
 import { Logger, loggerPool } from "@/bridgeo/utils/js/logger";
 import { typeCenter } from "@/bridgeo/utils/js/terminal-typography";
 import { toAnsiColorFormat } from "@/bridgeo/utils/mc/mc-formatter";
@@ -23,11 +24,11 @@ const consoleReal = {
     debug: console.debug,
 };
 const consoleLogger = new Logger('Console').inPool();
-console.log = consoleLogger.info.bind(consoleLogger);
-console.info = consoleLogger.info.bind(consoleLogger);
-console.warn = consoleLogger.warn.bind(consoleLogger);
-console.error = consoleLogger.error.bind(consoleLogger);
-console.debug = consoleLogger.debug.bind(consoleLogger);
+console.info = binding(consoleLogger).info;
+console.warn = binding(consoleLogger).warn;
+console.error = binding(consoleLogger).error;
+console.debug = binding(consoleLogger).debug;
+console.log = console.info;
 
 export function initTerminal() {
     loggerPool.on('log', (_, content) => {

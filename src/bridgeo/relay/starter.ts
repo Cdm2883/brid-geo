@@ -15,6 +15,7 @@ import notification from "@/bridgeo/relay/packets/notification";
 import CommonRelay from "@/bridgeo/relay/relay";
 import CommonRelayPlayer from "@/bridgeo/relay/relay-player";
 import { BridgeoConfig, BridgeoConfigGenerated, generatedBridgeoConfig } from "@/bridgeo/utils/js/bridgeo-config";
+import { binding } from "@/bridgeo/utils/js/functions";
 import { Logger } from "@/bridgeo/utils/js/logger";
 import { findFreeUdpPort } from "@/bridgeo/utils/js/port-utils";
 import { mchalk } from "@/bridgeo/utils/mc/mc-formatter";
@@ -150,15 +151,15 @@ export async function createRelay(options: BridgeoRelayOptions) {
             playing = false;
             relay.options.disposable && relay.running && relay.clientCount === 0 && relay.close();
         });
-        client.on('clientbound', context.packets.onClientBound.bind(context.packets));
-        client.on('serverbound', context.packets.onServerBound.bind(context.packets));
+        client.on('clientbound', binding(context.packets).onClientBound);
+        client.on('serverbound', binding(context.packets).onServerBound);
         context.packets.register(context.local);
         context.client.context = context;
         setupRelayPlayer(context);
         lifecycle.emit('relay.joined', context);
     });
 
-    relay.on('error', logger.error.bind(logger));
+    relay.on('error', binding(logger).error);
 
     relays.push(relay);
     await relay.listen();
