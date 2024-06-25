@@ -7,6 +7,7 @@ import { binding } from "@/bridgeo/utils/js/functions";
 export interface IPluginRegisterRelay extends PacketsReceiver {
     onRelayCreating?(material: RelayCreatingMaterial): void;
     onRelayCreated?(relay: CommonRelay, material: Readonly<RelayCreatingMaterial>): void;
+    onRelayJoined?(context: RelayContext): void;
     onClientBound?<T>(this: RelayContext, packet: PacketStub<T>, options: PacketOptionsStub<T>): void;
     onServerBound?<T>(this: RelayContext, packet: PacketStub<T>, options: PacketOptionsStub<T>): void;
     onUpstream?(this: RelayContext, buffer: Buffer, options: { canceled: boolean }): void;
@@ -28,6 +29,8 @@ export class PluginRegisterRelay extends PluginRegister<IPluginRegisterRelay> {
         }
 
         const handlePackets = (context: RelayContext) => {
+            handler.onRelayJoined?.(context);
+
             const onClientBound = handler.onClientBound?.bind(context);
             const onServerBound = handler.onServerBound?.bind(context);
             if (onClientBound || onServerBound) {
