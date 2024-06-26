@@ -1,6 +1,7 @@
+import { createHash } from "node:crypto";
 import * as util from "node:util";
 
-import chalk from "chalk";
+import chalk, { ChalkInstance } from "chalk";
 import _ from "lodash";
 
 import EventBus from "@/bridgeo/utils/js/event-bus";
@@ -23,7 +24,7 @@ export declare interface LoggerPool {
     on(eventName: 'log', listener: (logger: Logger, content: string) => void): this;
 }
 export class LoggerPool extends EventBus {
-    static INSTANCE = new LoggerPool();
+    static INSTANCE = new this();
     private constructor() {
         super();
     }
@@ -40,6 +41,12 @@ export class LoggerPool extends EventBus {
         logger.destroy();
         for (const item of this.loggers) {
             if (item.isChildOf(logger)) item.destroy();
+        }
+    }
+
+    get(hash: string) {
+        for (const logger of this.loggers) {
+            if (logger.hash === hash) return logger;
         }
     }
 }
@@ -59,7 +66,16 @@ export class Logger extends EventBus implements LoggerLike {
         if (parent?.destroyed) throw new ReferenceError();
         this.name = name;
         this.parent = parent;
-        this.hash = Math.random().toString(16).substring(2, 6);
+        this.hash = createHash('sha256')
+            .update(this.names.value)
+            .update(
+                new Error().stack
+                    ?.split('\n')[2].trim()
+                    .split(' ')[1]
+                    .split(/[\\\/]/).pop() ?? '^'
+            )
+            .digest('hex')
+            .slice(0, 5);
     }
 
     inPool(): this {
@@ -84,8 +100,15 @@ export class Logger extends EventBus implements LoggerLike {
         return [ ...this.parents(), this ];
     }
 
+    private static readonly TAGS = {
+        DEBUG: [ chalk.italic('DEBUG'), undefined ],
+        INFO: [ chalk.cyan('INFO'), undefined ],
+        WARN: [ chalk.yellow('WARN'), chalk.yellowBright ],
+        ERROR: [ chalk.red('ERROR'), chalk.redBright ],
+        FATAL: [ chalk.white.bgRed('FATAL'), chalk.redBright ],
+    } as const;
     names = lazy(() => this.families().map(logger => `[${logger.name}]`).join(' '));
-    private log0(tag: string, ...messages: unknown[]) {
+    private log0(tag: string, tint: ChalkInstance | undefined, ...messages: unknown[]) {
         this.emit('log.raw', tag, messages);
         const date = new Date();
         const hh = date.getHours().toString().padStart(2, '0');
@@ -96,22 +119,27 @@ export class Logger extends EventBus implements LoggerLike {
         const modifier = `${time} ${tag} ${this.names.value} `;
         const indent = ' '.repeat(colorless(modifier).length);
         const content = messages.map(logify).join(' ').replaceAll('\n', '\n' + indent);
-        this.emit('log', modifier + content);
+        let log = modifier + content;
+        if (tint) log = log
+            .split('\n')
+            .map(line => tint(line))
+            .join('\n');
+        this.emit('log', log);
     }
     debug(...messages: unknown[]) {
-        this.log0(chalk.italic('DEBUG'), ...messages);
+        this.log0(...Logger.TAGS.DEBUG, ...messages);
     }
     info(...messages: unknown[]) {
-        this.log0(chalk.cyan('INFO'), ...messages);
+        this.log0(...Logger.TAGS.INFO, ...messages);
     }
     warn(...messages: unknown[]) {
-        this.log0(chalk.yellow('WARN'), ...messages);
+        this.log0(...Logger.TAGS.WARN, ...messages);
     }
     error(...messages: unknown[]) {
-        this.log0(chalk.red('ERROR'), ...messages);
+        this.log0(...Logger.TAGS.ERROR, ...messages);
     }
     fatal(...messages: unknown[]) {
-        this.log0(chalk.white.bgRed('FATAL'), ...messages);
+        this.log0(...Logger.TAGS.FATAL, ...messages);
     }
 }
 export const globalLogger = new Logger('BridGeo').inPool();

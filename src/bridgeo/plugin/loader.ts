@@ -2,14 +2,17 @@ import { createHash } from "node:crypto";
 import * as fs from "node:fs";
 import * as paths from "node:path";
 
+import chalk from "chalk";
 import _ from "lodash";
 
 import BasePlugin, { PluginMetadata } from "@/bridgeo/plugin/base-plugin";
+import { commanderPool } from "@/bridgeo/plugin/command";
+import { CliCommander } from "@/bridgeo/plugin/commander-helper";
 import { lifecycle } from "@/bridgeo/plugin/lifecycle";
 import EventBus from "@/bridgeo/utils/js/event-bus";
 import { BridgeoPaths, simpleWriteFile } from "@/bridgeo/utils/js/file-utils";
 import { mixinsClassInstance } from "@/bridgeo/utils/js/functions";
-import { Logger } from "@/bridgeo/utils/js/logger";
+import { Logger, logify } from "@/bridgeo/utils/js/logger";
 
 export interface PluginInfo {
     coder: () => string;
@@ -136,3 +139,55 @@ export async function importPlugin(namespace: string) {
     const { plugin } = await getPlugin(namespace);
     return plugin;
 }
+
+// noinspection RequiredAttributes
+commanderPool.register(new CliCommander('plugin')
+    .describe(program => program
+        .description('Plugin Manager')
+    )
+    .describe((program, helper) => program
+        .command('info [namespace]')
+        .option('-d, --details')
+        .description('show loaded plugin(s)')
+        .action((namespace: string | undefined, options: { details: boolean }) => {
+            const infos = namespace
+                ? plugins.filter(info => info.plugin.metadata.namespace.startsWith(namespace))
+                : plugins;
+            let output = '';
+            for (const info of infos) {
+                const metadata = info.plugin.metadata;
+                output += chalk.bold('# ' + metadata.name);
+                if (!options.details) {
+                    output += chalk.cyan(` (${metadata.namespace})`);
+                    if (metadata.description) output += chalk.italic.gray(': ' + metadata.description);
+                }
+                output += '\n';
+                if (options.details) {
+                    for (const [ key, value ] of Object.entries(metadata)) {
+                        output += '| ';
+                        output += chalk.underline.green(_.upperFirst(_.camelCase(key)));
+                        output += ': ';
+                        output += logify(value);
+                        output += '\n';
+                    }
+                    output += '\n';
+                }
+            }
+            helper.session.output.info(output);
+        })
+    )
+    .describe(program => program
+        .command('load <path>')
+        .description('load plugin')
+        .action((path: string) => void loadPluginPath(path))
+    )
+    .describe(program => program
+        .command('unload <namespace>')
+        .description('unload plugin')
+        .action((namespace: string) => unloadPlugin(namespace))
+    )
+    .describe(program => program
+        .command('reload <namespace>')
+        .description('reload plugin')
+        .action((namespace: string) => void reloadPlugin(namespace))
+    ));
