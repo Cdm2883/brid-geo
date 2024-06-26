@@ -29,8 +29,7 @@ globalLogger.info(String.raw`  ╚═╝┴└─┴─┴┘ ╚═╝└─┘
 globalLogger.info('  ' + chalk.bold.black.bgBlue(`v${packageJson.version}`.padEnd(20)));
 globalLogger.info();
 
-// noinspection JSIgnoredPromiseFromCall
-initRelay();
+void initRelay();
 
 await app.prepare();
 const wss = initWebsocket();
