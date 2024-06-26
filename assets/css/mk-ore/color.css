@@ -1,0 +1,73 @@
+[data-md-color-scheme="mk-ore"] * {
+    --accent: 88, 147, 66;
+    --accent-color: rgb(var(--accent));
+    /*--md-primary-fg-color:               hsla(#{hex2hsl($clr-indigo-500)}, 1);*/
+    /*--md-primary-fg-color--light:        hsla(#{hex2hsl($clr-indigo-400)}, 1);*/
+    /*--md-primary-fg-color--dark:         hsla(#{hex2hsl($clr-indigo-700)}, 1);*/
+    /*--md-primary-bg-color:               hsla(0, 0%, 100%, 1);*/
+    /*--md-primary-bg-color--light:        hsla(0, 0%, 100%, 0.7);*/
+
+    /*--md-accent-fg-color:                hsla(#{hex2hsl($clr-indigo-a200)}, 1);*/
+    /*--md-accent-fg-color--transparent:   hsla(#{hex2hsl($clr-indigo-a200)}, 0.1);*/
+    /*--md-accent-bg-color:                hsla(0, 0%, 100%, 1);*/
+    /*--md-accent-bg-color--light:         hsla(0, 0%, 100%, 0.7);*/
+
+    --md-typeset-mark-color: rgba(var(--accent), .8);
+
+    /*--md-mermaid-font-family: var(--md-text-font-family), sans-serif;*/
+    /*--md-mermaid-edge-color: var(--accent-color);*/
+    /*--md-mermaid-node-bg-color: rgba(var(--accent), .1);*/
+    /*--md-mermaid-node-fg-color: var(--accent-color);*/
+    /*--md-mermaid-label-bg-color: var(--md-default-bg-color);*/
+    /*--md-mermaid-label-fg-color: var(--accent-color);*/
+    /*--md-mermaid-sequence-actor-bg-color: var(--md-mermaid-label-bg-color);*/
+    /*--md-mermaid-sequence-actor-fg-color: var(--md-mermaid-label-fg-color);*/
+    /*--md-mermaid-sequence-actor-border-color: var(--md-mermaid-node-fg-color);*/
+    /*--md-mermaid-sequence-actor-line-color: var(--md-default-fg-color--lighter);*/
+    /*--md-mermaid-sequence-actorman-bg-color: var(--md-mermaid-label-bg-color);*/
+    /*--md-mermaid-sequence-actorman-line-color: var(--md-mermaid-node-fg-color);*/
+    /*--md-mermaid-sequence-box-bg-color: var(--md-mermaid-node-bg-color);*/
+    /*--md-mermaid-sequence-box-fg-color: var(--md-mermaid-edge-color);*/
+    /*--md-mermaid-sequence-label-bg-color: var(--md-mermaid-node-bg-color);*/
+    /*--md-mermaid-sequence-label-fg-color: var(--md-mermaid-node-fg-color);*/
+    /*--md-mermaid-sequence-loop-bg-color: var(--md-mermaid-node-bg-color);*/
+    /*--md-mermaid-sequence-loop-fg-color: var(--md-mermaid-edge-color);*/
+    /*--md-mermaid-sequence-loop-border-color: var(--md-mermaid-node-fg-color);*/
+    /*--md-mermaid-sequence-message-fg-color: var(--md-mermaid-edge-color);*/
+    /*--md-mermaid-sequence-message-line-color: var(--md-mermaid-edge-color);*/
+    /*--md-mermaid-sequence-note-bg-color: var(--md-mermaid-label-bg-color);*/
+    /*--md-mermaid-sequence-note-fg-color: var(--md-mermaid-edge-color);*/
+    /*--md-mermaid-sequence-note-border-color: var(--md-mermaid-label-fg-color);*/
+    /*--md-mermaid-sequence-number-bg-color: var(--md-mermaid-node-fg-color);*/
+    /*--md-mermaid-sequence-number-fg-color: var(--md-accent-bg-color);*/
+}
+
+body[data-md-color-scheme="mk-ore"] {
+    background-color: #101010;
+}
+/*body[data-md-color-scheme="mk-ore"]::before {*/
+/*    content: "BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo BridGeo";*/
+
+/*    position: absolute;*/
+/*    display: block;*/
+/*    transform: rotate(-15deg);*/
+/*    width: 200%;*/
+/*    height: 100%;*/
+/*    top: -50%;*/
+/*    left: -50%;*/
+/*    z-index: -1;*/
+
+/*    word-break: break-word;*/
+/*    color: rgba(72, 73, 74, .006);*/
+/*    font-size: 5rem;*/
+/*    word-spacing: -1rem;*/
+/*    line-height: 4rem;*/
+/*    font-family: "Minecraft Ten", Unifont, sans-serif !important;*/
+/*}*/
+
+[data-md-color-scheme="mk-ore"] h1 {
+    color: #fff !important;
+}
+[data-md-color-scheme="mk-ore"] .md-content *:not(code *) {
+    color: #fff;
+}

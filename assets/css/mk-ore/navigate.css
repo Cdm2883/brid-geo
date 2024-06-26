@@ -1,0 +1,100 @@
+@media screen and (min-width: 60em) {
+    [data-md-color-scheme="mk-ore"] .md-sidebar--secondary .md-sidebar__inner {
+        color: #fff;
+        background-color: #313233;
+    }
+    [data-md-color-scheme="mk-ore"] .md-sidebar--secondary .md-sidebar__inner:has(.md-nav > label) {
+        border: 2px solid #000000;
+        padding-bottom: 8px;
+    }
+    [data-md-color-scheme="mk-ore"] .md-sidebar--secondary .md-nav__title {
+        color: #fff;
+        border: 2px solid #5a5b5c;
+        background-color: #48494a;
+        padding: 8px 16px;
+        margin-right: -4px;
+    }
+
+    [data-md-color-scheme="mk-ore"] .md-sidebar--secondary .md-nav__link--passed {
+        color: #bfc0c2;
+    }
+    [data-md-color-scheme="mk-ore"] .md-sidebar--secondary .md-nav__item .md-nav__link--active,
+    [data-md-color-scheme="mk-ore"] .md-sidebar--secondary .md-nav__item .md-nav__link--active code {
+        color: var(--accent-color);
+    }
+    [data-md-color-scheme="mk-ore"] .md-sidebar--secondary .md-nav__link[for]:focus,
+    [data-md-color-scheme="mk-ore"] .md-sidebar--secondary .md-nav__link[for]:hover,
+    [data-md-color-scheme="mk-ore"] .md-sidebar--secondary .md-nav__link[href]:focus,
+    [data-md-color-scheme="mk-ore"] .md-nav__link[href]:hover {
+        color: #85df64;
+    }
+
+    [data-md-color-scheme="mk-ore"] .md-nav--secondary .md-nav__title {
+        box-shadow: none;
+    }
+}
+
+@media screen and (min-width: 76.25em) {
+    [data-md-color-scheme="mk-ore"] .md-sidebar--primary .md-sidebar__inner {
+        color: #fff;
+    }
+    [data-md-color-scheme="mk-ore"] .md-sidebar--primary .md-sidebar__inner:has(.md-nav__list > .md-nav__item--active) {
+        background-color: #313233;
+        border: 2px solid #000000;
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }
+
+    [data-md-color-scheme="mk-ore"] .md-nav__link--passed {
+        color: #bfc0c2;
+    }
+    [data-md-color-scheme="mk-ore"] .md-nav__item .md-nav__link--active,
+    [data-md-color-scheme="mk-ore"] .md-nav__item .md-nav__link--active code {
+        color: var(--accent-color);
+    }
+    [data-md-color-scheme="mk-ore"] .md-nav__link[for]:focus,
+    [data-md-color-scheme="mk-ore"] .md-nav__link[for]:hover,
+    [data-md-color-scheme="mk-ore"] .md-nav__link[href]:focus,
+    [data-md-color-scheme="mk-ore"] .md-nav__link[href]:hover {
+        color: #85df64;
+    }
+
+    [data-md-color-scheme="mk-ore"] .md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link::before {
+        content: '#';
+    }
+    [data-md-color-scheme="mk-ore"] .md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link {
+        background: transparent;
+        box-shadow: none;
+    }
+    [data-md-color-scheme="mk-ore"] .md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link:not(.md-nav__link--active) {
+        color: #fff;
+    }
+}
+
+/* 抽屉 */
+@media screen and (max-width: 76.25em) {
+    [data-md-color-scheme="mk-ore"] .md-nav--primary .md-nav__title {
+        background-color: #313233;
+        color: #fff;
+        font-family: "Minecraft Ten", Unifont, sans-serif !important;
+    }
+    /*[data-md-color-scheme="mk-ore"] .md-nav--primary .md-nav__title[for=__drawer] {*/
+    /*    background-color: #313233;*/
+    /*    font-family: "Minecraft Ten", Unifont, sans-serif !important;*/
+    /*}*/
+
+    [data-md-color-scheme="mk-ore"] .md-nav--primary .md-nav__title~.md-nav__list {
+        background-color: #101010;
+        color: #fff;
+    }
+    .md-nav--primary .md-nav__item--active>.md-nav__link {
+        color: var(--accent-color);
+    }
+}
+@media screen and (max-width: 60em) {
+    [data-md-color-scheme="mk-ore"] .md-sidebar--primary .md-nav__source {
+        box-shadow: inset 0 2px #5a5b5c, inset 0 -2px #333334;
+        /*padding: 18px 16px 16px 18px;*/
+        background-color: #48494a;
+    }
+}
