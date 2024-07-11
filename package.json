@@ -25,7 +25,7 @@
   },
   "dependencies": {
 
-    "bedrock-protocol": "3.37.0",
+    "bedrock-protocol": "3.38.0",
     "bedrock-provider": "^3.0.0",
     "minecraft-data": "^3.66.0",
     "minecraft-protocol": "^1.47.0",
