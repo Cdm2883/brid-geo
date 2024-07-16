@@ -52,13 +52,14 @@ export function toInternalVersion(version: unknown): InternalVersion {
             break;
         case "string":
             const parseVersion = (version: string) => version.split('.').map(Number);
+            const equals = ([ x1, y1, z1 ]: number[], [ x2, y2, z2 ]: number[]) => x1 === x2 && y1 === y2 && z1 === z2;
             const curVersion = parseVersion(version);
             for (const [ min, max,, internal ] of versions) {
                 const minVersion = parseVersion(min);
-                if (curVersion === minVersion) return internal;
+                if (equals(curVersion, minVersion)) return internal;
                 if (!max) continue;
                 const maxVersion = parseVersion(max);
-                if (curVersion === maxVersion) return internal;
+                if (equals(curVersion, maxVersion)) return internal;
                 if (minVersion < curVersion && curVersion < maxVersion) return internal;
             }
             break;
