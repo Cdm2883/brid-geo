@@ -6,7 +6,7 @@
 ](https://github.com/Cdm2883/brid-geo/releases/latest)
 [![QQ Group](https://img.shields.io/badge/QQ_Group-Cdm's_group-0099ff?style=for-the-badge&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAARcSURBVHgB7Z2NUdswFMf%2F6XWAdALEBNAJaiZomQAzQekEJBOUTsAIzQawQekEdicgnUDVO8uHa0icSHqyJb%2Ffnc6Q5GxLT%2B9DlvwECIIgCIIgzJEFJo7WujCHc1PO7HFpiur9rDZla4%2B%2FTXky5XGxWGwhHA81uin3pjxrPx5MKU1ZQhjGNlalw1OZcmuKgvAa3fT4J81PZUoJ4QXTIN91fB703LXBNMDSNsRYVHoCQhglCrIVf8DraCY2FCVdmGjpCSMRXQC6iUh%2BYfzGbxlVCO8Qn3tMp%2FEJ6hA%2FxzJHUQVgKnlrDl8wPRSajpEv1MP09FkhMtF8gKlchWmZnl2cGn9QIxJRTJBuBj8KaRDVFEXRgIR6fwtFRY%2BIALsGJNb7W24RCXYNSLD3t0TRAlYNMI1PIadCmkQJl7lN0BRj%2FkO50hHmEdhMkL35Z6QNuxni1IAC6cOuwZwCSNn8tHwGM5wCOEP60OMTBUZYBGDt%2FznyoAAjXBqQS%2BMTrHURAQyjwAiXABTygdWXcQkgBwfcosAIlwCyWonGGQmJCToMtg4lGnAYyQkgNxSYCC4ALSuRj4JDA0QARxBcADFXFOSA%2BICR4fABCvmRVBRUIj%2FY5gWCT0kmvApiCJbpyaAakPgqiCFYZvhCm6AS%2BcKySiKYAKzzZZ9DHRFq%2FBKBCakBJfIneAcL5oQzdr59gjrjIBqQufPtE9QZhzJBJeZDUGfsLYAZON8%2BQZ1xCA0oMD%2BCdThvJzwj59vnQ4h0OF4aYBqf1v8ozJMbBMDXBAW5iUT5hAD4CiDITSQKpdgp4ImzAOzFFeZNAU98NCCH9f%2B%2BeFsAHwHM2fy0FL4zgE4CsBfNaQW0D16WwFUDCggtBTxwFYDY%2Fxe8TLGrAHJafu7L0g5InThaADMf%2Fe6igCMuGqAg9HG2CC4CGFK3GnmyL6lfPBM0cLE18hXAtz3fKTjiIoCTHZ%2FX5vHsyhz%2FID%2B2dh74x47vl64DspA%2B4MIe96lqqrR1WmG3hjtNU7oI4K0LrTvL0nMUAO1JADsBc4km2WufaALos7Gmp4UE4D1TNDE27R82w%2B4agXARQLdxa%2FSck%2B0lOWlB3V8HZP6%2Fw25%2FcBQ%2BAqjRLFKq3%2FhNsB4yAR7f%2BtDU%2B6b3XY0YUHZZfUD%2Bfc2zE8YYqD11pOjnTjcLE6aFbrYjSR32JK6saSt1%2BktW2NMYc7%2Bkd410Wcd44zNG4laKGL4iLSjyOUUEYgiABii0XUkqU5gU5X2M9b4z%2B3vCndFjjTS4zi59va0QPSuqMW2o8TfIFd3solHpaVJiBN4jErpZSXeF6SbzuDL3SMdNzE1AuccB1NgUAZVIZzxQo3nEsF6knHhEN%2FtDVjpt2DdyYNEAe%2BMr5AHtS3wBJjhyReSQtr7PJVd0xBWG1sgLNqfMZYIUmpFvgWYSv7sN%2BRL7I6Et%2Fq%2Fwtlf%2B4mX7cnTOe9I7t%2BqcY%2Bia6JyvPTcdaSpyI1nABEEQBEEQQvMP82DW%2Bu24kOQAAAAASUVORK5CYII%3D)](https://qm.qq.com/cgi-bin/qm/qr?k=Vcspr10ZnFcPd29hgPUgmxcBPsPni6pC&jump_from=webapi&authKey=uKMeRLS8aWCJwEXlYmkKeg1aBg4xmt/UbdXvEejPDOqCxhIKpqLK8Q+qG4ZFl0Nn)
 [![Documentation](https://img.shields.io/badge/Website-Documentation-589342?style=for-the-badge&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAHVJREFUSEvl1UEOgCAMRFF6%2F0PXdOGmRn9tM4lEtxDe0ALaEn8mXn9dAHf3KmpmGHAERBBCxgAhLSBS51Le7aQNRPIKMgIqyBjISC5VC3g6xj8E6CLRScIeyIHqu3TO%2B16T5SWSA%2Fv3YL8dvE1M8%2FGnTQvQ%2BAEpU3AZJ0CEfAAAAABJRU5ErkJggg%3D%3D)](https://bridgeo.cdms.vip/)
-> 《我的世界》基岩版服务器代理和渲染工具兼MITM开发框架
+> 《我的世界》基岩版服务器代理和渲染工具兼 MITM 开发框架
 
 ## ✨ 特性
 - ✅ 主菜单动态代理服务器[^1]
@@ -39,7 +39,7 @@
   - ✅ 内置多款插件
   - ✅ 加载更多插件
 
-[^1]: 这将在主端口开启一个空的基岩版服务器, 玩家连接到该服务器时将打开菜单询问选择代理目标
+[^1]: 这将在主端口开启一个空的基岩版服务器，玩家连接到该服务器时将打开菜单询问选择代理目标
 [^2]: 使 Java 版客户端能够加入基岩版服务器
 
 ## ⛳️ 启动
@@ -53,15 +53,15 @@ npm run start
 ## 💖 致谢
 - [Big PrismarineJS](https://github.com/PrismarineJS) 提供与游戏交互的能力
 
-- 以及项目所有的贡献者和一起水群的群友们!
+- 以及项目所有的贡献者和一起水群的群友们！
 
   [![Contributors](https://contrib.rocks/image?repo=Cdm2883/brid-geo)](https://github.com/Cdm2883/brid-geo/graphs/contributors)
 
-没有大家的存在, 项目**不可能**被完成!
+没有大家的存在，项目**不可能**被完成！
 
 ## 🎈 开源
-项目采用 GNU Lesser General Public License v3.0 开源.  
-请参阅 [COPYING](COPYING) 和 [COPYING.LESSER](COPYING.LESSER) 文件了解详情.
+项目采用 GNU Lesser General Public License v3.0 开源。  
+请参阅 [COPYING](COPYING) 和 [COPYING.LESSER](COPYING.LESSER) 文件了解详情。
 ```
 Minecraft Bedrock Edition server proxy and rendering tool with MITM development framework.
 Copyright (C) 2024-2024  Cdm2883
