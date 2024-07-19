@@ -75,6 +75,7 @@ declare module 'bedrock-protocol' {
         on(event: 'clientbound', listener: (packet, options: PacketBufferParsed & { canceled: boolean }) => void): this;
         on(event: 'serverbound', listener: (packet, options: PacketBufferParsed & { canceled: boolean }) => void): this;
 
+        $hook$readUpstream$parsing_error?(buffer: Buffer, e);
         $hook$readUpstream$parsed?(buffer: Buffer, parsed: PacketBufferParsed & { canceled: boolean });
         $hook$readUpstream$emitted?(buffer: Buffer, parsed: PacketBufferParsed & { canceled: boolean });
     }

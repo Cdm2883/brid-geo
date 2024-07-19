@@ -20,10 +20,19 @@ index 7018ae3..1b38537 100644
    ping,
    createServer,
 diff --git a/node_modules/bedrock-protocol/src/relay.js b/node_modules/bedrock-protocol/src/relay.js
-index 3128a7d..6d32e10 100644
+index 3128a7d..251e385 100644
 --- a/node_modules/bedrock-protocol/src/relay.js
 +++ b/node_modules/bedrock-protocol/src/relay.js
-@@ -60,6 +60,8 @@ class RelayPlayer extends Player {
+@@ -47,6 +47,8 @@ class RelayPlayer extends Player {
+     try {
+       des = this.server.deserializer.parsePacketBuffer(packet)
+     } catch (e) {
++      if (this.$hook$readUpstream$parsing_error?.(packet, e)) return
++
+       this.server.deserializer.dumpFailedBuffer(packet, this.connection.address)
+       console.error(this.connection.address, e)
+ 
+@@ -60,6 +62,8 @@ class RelayPlayer extends Player {
      const params = des.data.params
      this.upInLog('->', name, params)
  
@@ -32,7 +41,7 @@ index 3128a7d..6d32e10 100644
      if (name === 'play_status' && params.status === 'login_success') return // Already sent this, this needs to be sent ASAP or client will disconnect
  
      if (debugging) { // some packet encode/decode testing stuff
-@@ -68,6 +70,8 @@ class RelayPlayer extends Player {
+@@ -68,6 +72,8 @@ class RelayPlayer extends Player {
  
      this.emit('clientbound', des.data, des)
  
@@ -41,7 +50,7 @@ index 3128a7d..6d32e10 100644
      if (!des.canceled) {
        if (name === 'start_game') {
          setTimeout(() => {
-@@ -289,4 +293,4 @@ class Relay extends Server {
+@@ -289,4 +295,4 @@ class Relay extends Server {
  }
  
  // Too many things called 'Proxy' ;)

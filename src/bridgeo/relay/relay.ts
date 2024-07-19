@@ -5,6 +5,7 @@ import CommonRelayPlayer from "@/bridgeo/relay/relay-player";
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CommonRelayOptions extends RelayOptions {
     // reuseUnchangedBuffer?: boolean;
+    ignorePacketParseError?: boolean;
 }
 
 // noinspection JSUnusedGlobalSymbols

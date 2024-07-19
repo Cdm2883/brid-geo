@@ -28,6 +28,11 @@ export class CommonRelayPlayer extends RelayPlayer {
         // @ts-expect-error
         super(...args);
 
+        if (this.server.options.ignorePacketParseError) this.$hook$readUpstream$parsing_error = buffer => {
+            this.sendBuffer(buffer);
+            return true;
+        };
+
         // TODO fix definitions
         // noinspection CommaExpressionJS
         this.$hook$readUpstream$parsed = (buffer, { data: { name } }) => (
