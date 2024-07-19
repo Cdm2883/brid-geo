@@ -20,28 +20,28 @@ index 7018ae3..1b38537 100644
    ping,
    createServer,
 diff --git a/node_modules/bedrock-protocol/src/relay.js b/node_modules/bedrock-protocol/src/relay.js
-index 3128a7d..8d64559 100644
+index 3128a7d..6d32e10 100644
 --- a/node_modules/bedrock-protocol/src/relay.js
 +++ b/node_modules/bedrock-protocol/src/relay.js
-@@ -60,6 +60,17 @@ class RelayPlayer extends Player {
+@@ -60,6 +60,8 @@ class RelayPlayer extends Player {
      const params = des.data.params
      this.upInLog('->', name, params)
  
-+    // TODO fix definitions
-+    if (
-+        name === 'crafting_data'
-+        || name === 'spawn_particle_effect'
-+        || name === 'update_block_synced'
-+        || name === 'camera_instruction'
-+    ) {
-+      this.sendBuffer(packet)
-+      return
-+    }
++    if (this.$hook$readUpstream$parsed?.(packet, des)) return
 +
      if (name === 'play_status' && params.status === 'login_success') return // Already sent this, this needs to be sent ASAP or client will disconnect
  
      if (debugging) { // some packet encode/decode testing stuff
-@@ -289,4 +300,4 @@ class Relay extends Server {
+@@ -68,6 +70,8 @@ class RelayPlayer extends Player {
+ 
+     this.emit('clientbound', des.data, des)
+ 
++    if (this.$hook$readUpstream$emitted?.(packet, des)) return
++
+     if (!des.canceled) {
+       if (name === 'start_game') {
+         setTimeout(() => {
+@@ -289,4 +293,4 @@ class Relay extends Server {
  }
  
  // Too many things called 'Proxy' ;)

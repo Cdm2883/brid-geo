@@ -12,7 +12,7 @@ import { lifecycle } from "@/bridgeo/plugin/lifecycle";
 import LocalRecord from "@/bridgeo/relay/local-record";
 import PacketBus from "@/bridgeo/relay/packet-bus";
 import notification from "@/bridgeo/relay/packets/notification";
-import CommonRelay from "@/bridgeo/relay/relay";
+import CommonRelay, { CommonRelayOptions } from "@/bridgeo/relay/relay";
 import CommonRelayPlayer from "@/bridgeo/relay/relay-player";
 import { BridgeoConfig, BridgeoConfigGenerated, generatedBridgeoConfig } from "@/bridgeo/utils/js/bridgeo-config";
 import { binding } from "@/bridgeo/utils/js/functions";
@@ -26,6 +26,7 @@ export const relays: CommonRelay[] = [];
 export type BridgeoRelayOptions = Omit<Options, 'port'>
     & ServerOptions
     & RelayOptions
+    & Omit<CommonRelayOptions, 'port'>
     & Omit<BridgeoConfig, 'port'>
     & Omit<BridgeoConfigGenerated, 'port'>
     & { port: number };
@@ -56,7 +57,6 @@ declare module '@/bridgeo/relay/relay' {
     // noinspection JSUnusedGlobalSymbols
     interface CommonRelay {
         logger: Logger;
-        options: BridgeoRelayOptions;
         optionsOriginal: BridgeoRelayOptions;
     }
 }
@@ -95,6 +95,8 @@ export async function createRelay(options: BridgeoRelayOptions) {
     }
 
     const optionsFinally: BridgeoRelayOptions = {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         relayPlayer: CommonRelayPlayer,
         ...optionsExtends,
         onMsaCode: (data, client) => client.disconnect(
@@ -149,7 +151,7 @@ export async function createRelay(options: BridgeoRelayOptions) {
         server.setMaxListeners(Infinity);
         client.on('close', () => {
             playing = false;
-            relay.options.disposable && relay.running && relay.clientCount === 0 && relay.close();
+            (relay.options as BridgeoRelayOptions).disposable && relay.running && relay.clientCount === 0 && relay.close();
         });
         client.on('clientbound', binding(context.packets).onClientBound);
         client.on('serverbound', binding(context.packets).onServerBound);
@@ -170,7 +172,7 @@ export async function createRelay(options: BridgeoRelayOptions) {
 function setupRelayPlayer(context: RelayContext) {
     context.packets.on('server.transfer', async ({ server_address, port }, options) => {
         context.logger.info(`| ${context.client.profile?.name ?? context.client.connection.address} 跳转至服务器 >> ${server_address}:${port}`);
-        if (context.relay.options.recursive) {
+        if ((context.relay.options as BridgeoRelayOptions).recursive) {
             options.canceled = true;
             context.client.queue(...notification.toast(mchalk.bold(`[BridGeo]`), `正在启动递归代理...`));
             const transferred = await findOrCreateRelay({

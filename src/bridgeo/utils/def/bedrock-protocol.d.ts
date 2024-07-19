@@ -74,6 +74,9 @@ declare module 'bedrock-protocol' {
         on(event: 'spawn', cb: (reason: string) => void): this;
         on(event: 'clientbound', listener: (packet, options: PacketBufferParsed & { canceled: boolean }) => void): this;
         on(event: 'serverbound', listener: (packet, options: PacketBufferParsed & { canceled: boolean }) => void): this;
+
+        $hook$readUpstream$parsed?(buffer: Buffer, parsed: PacketBufferParsed & { canceled: boolean });
+        $hook$readUpstream$emitted?(buffer: Buffer, parsed: PacketBufferParsed & { canceled: boolean });
     }
     export interface Relay extends Server {
         options: RelayOptions;

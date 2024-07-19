@@ -1,11 +1,12 @@
 import { Options, RealmsOptions, RelayOptions, ServerOptions } from "bedrock-protocol";
 
+import { CommonRelayOptions } from "@/bridgeo/relay/relay";
 import { InternalVersion, ProtocolVersion, toInternalVersion, Version } from "@/bridgeo/utils/mc/versions";
 
 import bridgeoConfig from "../../../../bridgeo.config";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface BridgeoConfig extends Record<string, any> {
+type DifferentProperty = 'host' | 'port' | 'version' | 'destination';
+export type BridgeoConfig = Omit<CommonRelayOptions, DifferentProperty> & {
     /** 要绑定的主机 (使用0.0.0.0绑定所有主机) */
     host?: string;
 
@@ -37,10 +38,10 @@ export interface BridgeoConfig extends Record<string, any> {
 }
 
 export type BridgeoConfigGenerated =
-    Omit<Options, 'port'>
+    Omit<Options, DifferentProperty>
     & ServerOptions
     & RelayOptions
-    & Omit<BridgeoConfig, 'port'>
+    & Omit<BridgeoConfig, DifferentProperty>
     & {
     host: string;
     port: number[];

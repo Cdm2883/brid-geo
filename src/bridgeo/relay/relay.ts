@@ -2,8 +2,14 @@ import { Client, Relay, RelayOptions } from "bedrock-protocol";
 
 import CommonRelayPlayer from "@/bridgeo/relay/relay-player";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CommonRelayOptions extends RelayOptions {
+    // reuseUnchangedBuffer?: boolean;
+}
+
 // noinspection JSUnusedGlobalSymbols
 export declare interface CommonRelay {
+    options: CommonRelayOptions;
     clients: Record<string, CommonRelayPlayer>;
     on(event: 'connect', cb: (client: CommonRelayPlayer) => void): this;
     on(event: 'create_forward_backend', cb: (client: CommonRelayPlayer, server: Client) => void): this;
@@ -13,14 +19,12 @@ export declare interface CommonRelay {
 }
 export class CommonRelay extends Relay {
     running = false;
-    constructor(options: RelayOptions) {
+    constructor(options: CommonRelayOptions) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         options.relayPlayer = CommonRelayPlayer;
         super(options);
         this.setMaxListeners(Infinity);
-        // TODO 无需网页登录
-        // TODO 在数据包事件最终处理完后如果与原来比较发现未做修改则直接发送原来的buffer而不是再用协议定义重新组装成buffer (可以有效防止大部分包破损, 但会增加性能消耗, 作为可选配置默认关闭)
     }
     
     openUpstreamConnection(client: CommonRelayPlayer, clientAddr: unknown) {
