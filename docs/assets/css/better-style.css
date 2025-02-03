@@ -1,0 +1,28 @@
+.md-typeset .grid.cards>ol>li:empty,
+.md-typeset .grid.cards>ul>li:empty,
+.md-typeset .grid>.card:empty {
+    display: none;
+}
+
+/*.grid.cards .highlighttable {*/
+/*    !*overflow: hidden;*!*/
+/*}*/
+/*.grid.cards .highlighttable,*/
+/*.grid.cards .highlighttable tbody,*/
+/*.grid.cards .highlighttable tr:nth-child(2),*/
+/*.grid.cards .highlighttable .code,*/
+/*.grid.cards .highlighttable .code > div,*/
+/*.grid.cards .highlighttable pre {*/
+/*    height: 100%;*/
+/*}*/
+/*.grid.cards .highlighttable pre > code {*/
+/*    height: calc(100% - 40px);*/
+/*    overflow-y: hidden;*/
+/*}*/
+.grid.cards .highlighttable {
+    height: 100%;
+}
+.grid.cards .highlighttable tbody {
+    height: 100%;
+    background: var(--md-code-bg-color);
+}

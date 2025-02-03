@@ -1,0 +1,134 @@
+#file: noinspection YAMLSchemaValidation
+site_name: BridGeo
+site_url: https://bridgeo.cdms.vip/
+site_author: Cdm2883
+
+repo_name: Cdm2883/brid-geo
+repo_url: https://github.com/Cdm2883/brid-geo
+
+copyright: Copyright &copy; 2024 - 2024 Cdm2883
+
+nav:
+  - 首页: index.md
+  - 使用教程:
+    - 快速开始: usage/quick-start.md
+    - 配置文件: usage/config.md
+    - 安装插件: usage/install-plugins.md
+    - 常见问题: usage/faq.md
+  - 内置插件:
+    - lib:
+      - 快捷菜单: plugins/lib/quick-menu.md
+    - 自由摄像机: plugins/camera-free.md
+    - 消息小尾巴: plugins/message-tail.md
+    - 还是PVP大佬: plugins/pvp-master.md
+    - "\"虚拟现实\"": plugins/seeing-fiction.md
+  - 开发文档:
+    - 项目结构: develop/structure.md
+    - 开发环境: develop/workspace.md
+    - 插件系统: develop/plugin-system.md
+
+theme:
+  name: material
+  language: zh
+  favicon: assets/img/bridgeo.png
+  logo: assets/img/bridgeo.png
+  palette:
+    - scheme: mk-ore
+      primary: green
+      accent: green
+      toggle:
+        icon: material/brightness-7
+        name: Switch to OreUI
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: material/brightness-4
+        name: Switch to Material2
+  font:
+    text: Roboto
+    code: Source Code Pro
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+
+plugins:
+  - search
+# TODO 取消minify插件
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+      cache_safe: true
+      css_files:
+        - assets/css/mk-ore/font.css
+        - assets/css/mk-ore/color.css
+        - assets/css/mk-ore/header.css
+        - assets/css/mk-ore/navigate.css
+        - assets/css/mk-ore/content.css
+        - assets/css/mk-ore/footer.css
+
+        - assets/css/better-style.css
+
+markdown_extensions:
+  - admonition
+  - md_in_html
+  - def_list
+  - attr_list
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - toc:
+      permalink: true
+      permalink_title: 获取此部分的链接
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+# minify插件不支持@import
+#  - assets/css/mk-ore/main.css
+  - assets/css/mk-ore/font.css
+  - assets/css/mk-ore/color.css
+  - assets/css/mk-ore/header.css
+  - assets/css/mk-ore/navigate.css
+  - assets/css/mk-ore/content.css
+  - assets/css/mk-ore/footer.css
+
+  - assets/css/better-style.css
+
+extra:
+  social:
+    - icon: material/email
+      link: mailto:hi@cdms.vip
