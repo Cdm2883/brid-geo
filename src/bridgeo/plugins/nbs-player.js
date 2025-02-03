@@ -66,6 +66,8 @@ class NbsPlayer extends EventEmitter {
         super();
         this.song = song;
         this.multiplier = 1;
+        this.length = song.getLength();
+        this.timePerTick = song.getTimePerTick();
         this.reset();
         this.on('end', this.reset.bind(this));
     }
@@ -82,10 +84,10 @@ class NbsPlayer extends EventEmitter {
         for (let layer of this.song.layers)
             if (!layer.isLocked) for (let [ tick, note ] of layer.notes)
                 if (tick === this.tick && note) this.emit('note', note);
-        this.emit('progress', this.tick / this.song.length);
+        this.emit('progress', this.tick / this.length);
 
-        await sleep(this.song.timePerTick / this.multiplier);
-        if (++this.tick >= this.song.length) this.emit('end');
+        await sleep(this.timePerTick / this.multiplier);
+        if (++this.tick >= this.length) this.emit('end');
     }
 }
 
@@ -150,7 +152,7 @@ function play(path) {
     const colors = betterArray('4c6e2a3sb5d'.split(''));
     const hideBossBar = () => trying(() => bossEventUtils.removeBossBar.call(this, bossId), null);
     const hideBossBarDebounced =
-        _.debounce(hideBossBar, current.player.song.timePerTick + 1000);
+        _.debounce(hideBossBar, current.player.timePerTick + 1000);
     current.player.on('progress', progress => trying(() => {
         hideBossBar();
         const title = ss[`_l${colors[colors.loop]}`]`${showName(path)} | ${current.order}`;
